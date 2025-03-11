@@ -62,7 +62,7 @@ public class Main {
         }
     }
 
-    private static FileStorage getREspectiveFileClass(StorageType storageType) {
+    static FileStorage getREspectiveFileClass(StorageType storageType) {
         if (storageType == StorageType.LOCAL) return new LocalStorageFactory().createStorage();
         if (storageType == StorageType.DATABASE) return new DataBaseStorageFactory().createStorage();
         if (storageType == StorageType.CLOUD) return new CloudStorageFactory().createStorage();
