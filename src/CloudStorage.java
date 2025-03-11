@@ -1,5 +1,8 @@
 public class CloudStorage implements FileStorage{
 
+    public CloudStorage(){
+        System.out.println("creating an isntamc of cloud strorage" );
+    }
 
     @Override
     public byte[] download(String fileName) {
@@ -15,4 +18,6 @@ public class CloudStorage implements FileStorage{
     public void upload(String fileName, byte[] fileData) {
 
     }
+
+
 }

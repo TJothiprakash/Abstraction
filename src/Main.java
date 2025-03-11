@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose a storage strategy:");
+
         StorageContext storageContext = new StorageContext(getStorageType(scanner));
 
         while (true) {
@@ -49,16 +51,21 @@ public class Main {
         while (true) {
             System.out.println("\nChoose storage method:\n1. Database\n2. Local Storage\n3. Cloud Storage");
             int choice = scanner.nextInt();
+
             switch (choice) {
-                case 1:
-                    return new DataBaseStorage();
-                case 2:
-                    return new LocalStorage();
-                case 3:
-                    return new CloudStorage();
+                case 1: return getREspectiveFileClass(StorageType.DATABASE);
+                case 2: return getREspectiveFileClass(StorageType.LOCAL);
+                case 3: return getREspectiveFileClass(StorageType.CLOUD);
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
         }
+    }
+
+    private static FileStorage getREspectiveFileClass(StorageType storageType) {
+        if (storageType == StorageType.LOCAL) return new LocalStorageFactory().createStorage();
+        if (storageType == StorageType.DATABASE) return new DataBaseStorageFactory().createStorage();
+        if (storageType == StorageType.CLOUD) return new CloudStorageFactory().createStorage();
+        throw new IllegalArgumentException("Unknown storage type");
     }
 }
